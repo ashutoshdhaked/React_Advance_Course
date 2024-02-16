@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-const HocUserInfo = ({children,getdata ,resourceName})=>{
+const DataStore = ({children,getdata ,resourceName})=>{
     const [data,setData] = useState({});
 
     useEffect(()=>{
@@ -23,4 +23,4 @@ const HocUserInfo = ({children,getdata ,resourceName})=>{
     )
 }
 
-export default HocUserInfo;
+export default DataStore;

@@ -1,5 +1,5 @@
 const UserInfo = ({user})=>{
-     console.log('user ; '+JSON.stringify(user));
+     console.log('user ; '+JSON.stringify(user)); 
     if (!user) {
         return <div>User data not available</div>;
     }

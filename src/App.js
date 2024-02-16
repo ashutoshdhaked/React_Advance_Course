@@ -10,8 +10,14 @@
 // import HocUserInfo from "./components/showUser/hocuserinfo";
 import UserInfo from "./components/showUser/userinfo";
 import BookInfo from "./showbooks/booksinfo";
-import DataStore from './components/datasource/DataStore';
+// import DataStore from './components/datasource/DataStore';
+import DataStoreWithRender from "./components/datasource/DataStoreWithRender";
 import axios from "axios";
+
+async function fetchDataApi(url){
+  const response = await axios.get(url);
+  return response.data;
+}
 
 function App() {
   return (
@@ -32,7 +38,7 @@ function App() {
          </HocUserInfo> */}
 
 
-         <DataStore getdata={async()=>{
+         {/* <DataStore getdata={async()=>{
            const response = await axios.get(`http://localhost:9090/getuserbyid/${3}`);
            return response.data;
          }}
@@ -47,7 +53,16 @@ function App() {
          }}
          resourceName='book'>
         <BookInfo/>
-       </DataStore>
+       </DataStore> */}
+
+    <DataStoreWithRender getdata={()=>fetchDataApi(`http://localhost:9090/getuserbyid/${3}`)}  render={(resource)=><UserInfo user={resource}/>}/>
+    <DataStoreWithRender getdata={()=>fetchDataApi(`http://localhost:9090/booksinfobyid/${3}`)}  render={(resource)=><BookInfo book={resource}/>}/>
+
+
+
+   
+ 
+
     </>
   );
 }
