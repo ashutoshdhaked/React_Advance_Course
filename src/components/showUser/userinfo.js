@@ -11,7 +11,7 @@ const UserInfo = ({user})=>{
          <h3>Books </h3>
          <ul>
             {
-               user.books &&   user.books.map((item,index)=>{
+              user.books &&   user.books.map((item,index)=>{
                     return(
                         <li key={index}> {index+1}  - :  {item}</li>
                     )

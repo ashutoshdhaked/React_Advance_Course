@@ -1,21 +1,20 @@
-import axios from "axios";
 import React, { useState,useEffect } from "react";
-const HocUserInfo = ({children,userid })=>{
-    const [user,setUser] = useState({});
+const HocUserInfo = ({children,getdata ,resourceName})=>{
+    const [data,setData] = useState({});
 
     useEffect(()=>{
         (async()=>{
-          console.log("request sending...");
-          const userdata = await axios.get(`http://localhost:9090/getuserbyid/${userid}`);
-           setUser(userdata.data);
+            const response = await getdata();
+            setData(response);
         })()
-    },[userid]) 
+    },[getdata])
+
     return(
          <>
-           {  user ?
+           {  data ?
               React.Children.map(children,(child)=>{
                if(React.isValidElement(child)){
-                   return React.cloneElement(child,{user})
+                   return React.cloneElement(child,{[resourceName]:data})
                }
                return child;
               })

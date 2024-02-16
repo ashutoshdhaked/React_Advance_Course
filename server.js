@@ -73,6 +73,12 @@ app.get('/getuserbyid/:id',(req,res)=>{
        return res.status(200).json(userdata);
 })
 
+app.get('/booksinfobyid/:id',(req,res)=>{
+  const id = req.params.id;
+  const bookdata = books.find((book)=>book.id === parseInt(id));
+    return res.status(200).json(bookdata);
+})
+
 
 app.listen(Port,()=>{
     console.log("server is started on the port : 9090");
