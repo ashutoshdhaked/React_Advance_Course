@@ -1,65 +1,19 @@
-//  import UncontrolledForm from "./components/uncontrolled_from";
-//  import ControlledForm from "./components/controlled_form";
-// import UncontrolledModal from "./components/uncontrolled_modal";
-// import ControlledModal from "./components/controlled_modal";
-// import { useState } from "react";
+// import { hoc } from "./components/hoc";
+//  import Userinfo from "./components/userinfo";
 
-import Uncontrolledflow from "./components/uncontrolledflow"
+import UserInfoForm from './components/userform';
+import { updatableUser } from "./components/updateuser";
+ const UserInfoWrappercomp = updatableUser(UserInfoForm,"3");
 
-const Stepone = ({goNext})=>{
-  console.log(goNext);
-  return (
-    <>
-    <h1># Step - 1 </h1>
-     <button onClick={goNext}>next</button>
-    </>
-  )
-}
-const Steptwo = ({goNext})=>{
-  return(
-    <>
-    <h1># Step - 2 </h1>
-     <button onClick={goNext}>next</button>
-    </>
-  )
-}
-const Stepthree = ({goNext})=>{
-  return(
-    <>
-    <h1># Step - 3 </h1>
-     <button onClick={goNext}>next</button>
-    </>
-  )
-}
-
-
+// const UserInfoWrapper =  hoc(Userinfo);
 
 function App() {
-//  const[show, setshow] = useState(false); 
-
-//  function showingdata(){
-//     setshow(false);
-//  } 
-
   return (
     <>
-     {/* <UncontrolledForm/> 
-     <ControlledForm/> */}
+     {/* <UserInfoWrapper test="test the data "  keyvalue="this is the key" valuedata="for the key value is value"/> */}
+      {/* <UserInfoWrappercomp/> */}
 
-
-{/* 
-     <UncontrolledModal/>
-     { show &&
-     <ControlledModal showmodal={showingdata}/>
-      }
-     <button onClick={()=>{setshow(!show)}}>{show ? 'close modal':'show Modal'}</button>
- */}
-
-   <Uncontrolledflow>
-    <Stepone/>
-    <Steptwo/>
-    <Stepthree/>
-   </Uncontrolledflow>
+      <UserInfoWrappercomp/>
     </>
   );
 }
