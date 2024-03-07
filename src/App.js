@@ -1,19 +1,20 @@
-// import { hoc } from "./components/hoc";
-//  import Userinfo from "./components/userinfo";
-
-import UserInfoForm from './components/userform';
-import { updatableUser } from "./components/updateuser";
- const UserInfoWrappercomp = updatableUser(UserInfoForm,"3");
-
-// const UserInfoWrapper =  hoc(Userinfo);
-
+import Recursive from "./components/Recursive";
+const objectData = {
+  key1: "value1",
+  key2: {
+    innerKey1: "innervalues1",
+    innerKey2: {
+      innerInnerKey1: "ineerIneerValues1",
+      innerInnerKey2: "innerIneerValues2",
+    },
+  },
+  key3: "valuers",
+};
 function App() {
   return (
-    <>
-     {/* <UserInfoWrapper test="test the data "  keyvalue="this is the key" valuedata="for the key value is value"/> */}
-      {/* <UserInfoWrappercomp/> */}
-
-      <UserInfoWrappercomp/>
+    <> 
+      Hello Recursive  :
+      <Recursive data={objectData}/>
     </>
   );
 }
