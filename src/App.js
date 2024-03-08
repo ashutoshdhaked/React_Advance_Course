@@ -1,32 +1,23 @@
-import Recursive from "./components/Recursive";
-import { RedButton,GreenButton } from "./components/composition";
-import { RedButton2, UpdatedRedButton } from "./components/partialcomp";
-const objectData = {
-  key1: "value1",
-  key2: {
-    innerKey1: "innervalues1",
-    innerKey2: {
-      innerInnerKey1: "ineerIneerValues1",
-      innerInnerKey2: "innerIneerValues2",
-    },
-  },
-  key3: "valuers",
-};
- 
+import Card from "./components/card";
+
 function App() {
   return (
     <> 
-      Hello Recursive  :
-      <Recursive data={objectData}/>
-
-
-      <RedButton  text='i am red button' size="10px"/>
-      <GreenButton text='i am green button' size="20px"/>
-
-    <RedButton2/>
-    <UpdatedRedButton/>
-
-
+    <div style={{width:'500px'}}>
+    <Card>
+      <Card.Header>
+        Header 
+      </Card.Header>
+      <Card.Body>
+        This is the body of the Card and Contain the many of data and
+         this data is visible to you on the browser screeen. 
+      </Card.Body>
+      <Card.Footer>
+        <button>Ok</button>
+        <button>CANCEL</button>
+      </Card.Footer>
+    </Card>
+    </div>
     </>
   );
 }
