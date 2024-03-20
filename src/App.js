@@ -1,17 +1,45 @@
-import {useDeferredValue, useState} from 'react';
-import "./App.css";
-import {HavyComponent} from './HavyComponent';
+import { useState, useTransition } from "react";
+import Cover from "./component/cover";
+import Reviews from "./component/reviews";
+import Writer from "./component/writer";
+import { StyledButton } from "./component/styled-elements";
+
 function App() {
-   const [keyword,setkeyword] = useState("");
-   const differedvalue = useDeferredValue(keyword);
-   console.log("keyword"+keyword);
-   console.log('diffkeyword :'+differedvalue);
+  const [section, setSection] = useState("Cover");
+
+  const sectionHandler = (sec) => {
+    setSection(sec);
+  };
   return (
-   <>
-     <input type='text' onChange={(e)=>{setkeyword(e.target.value)}}></input>
-     <HavyComponent keyword={differedvalue} />
-   </>
+    <>
+      <Button onClick={() => sectionHandler("Cover")}>Cover</Button>
+      <Button onClick={() => sectionHandler("Reviews")}>Book Reviews</Button>
+      <Button onClick={() => sectionHandler("Writer")}>Book's Writer</Button>
+
+      {section === "Cover" ? (
+        <Cover />
+      ) : section === "Reviews" ? (
+        <Reviews />
+      ) : (
+        <Writer />
+      )}
+    </>
   );
 }
+
+const Button = ({ onClick, ...props }) => {
+  const [isPending, startTransition] = useTransition();
+
+  return (
+    <StyledButton
+      onClick={() => {
+        startTransition(() => {
+          onClick();
+        });
+      }}
+      {...props}
+    />
+  );
+};
 
 export default App;
