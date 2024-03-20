@@ -1,23 +1,16 @@
-import { useRef } from "react";
+import {useDeferredValue, useState} from 'react';
 import "./App.css";
-import { Input } from "./input";
-
+import {HavyComponent} from './HavyComponent';
 function App() {
-  const inputRef = useRef();
-
-  function submitHandler(e) {
-    e.preventDefault();
-
-    console.log(inputRef.current.value);
-  }
-
+   const [keyword,setkeyword] = useState("");
+   const differedvalue = useDeferredValue(keyword);
+   console.log("keyword"+keyword);
+   console.log('diffkeyword :'+differedvalue);
   return (
-    <form onSubmit={submitHandler}>
-      <Input ref={inputRef} />
-      <button type="submit" className="button">
-        Submit
-      </button>
-    </form>
+   <>
+     <input type='text' onChange={(e)=>{setkeyword(e.target.value)}}></input>
+     <HavyComponent keyword={differedvalue} />
+   </>
   );
 }
 
