@@ -1,8 +1,9 @@
 import axios from "axios";
 
 const axiosParams = {
+  // Base URL should be set via environment
   baseURL:
-    process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/",
+    process.env.NODE_ENV === "development" ? "http://localhost:9000/" : "/",
 };
 
 const axiosInstance = axios.create(axiosParams);
@@ -33,8 +34,6 @@ const withAbort = (fn) => {
         return await fn(url, config);
       }
     } catch (error) {
-      console.log("api error", error);
-
       if (didAbort(error)) {
         error.aborted = true;
       }
@@ -46,9 +45,10 @@ const withAbort = (fn) => {
   return executor;
 };
 
-const withLogger = async (promise) =>
+export const withLogger = async (promise) =>
   promise.catch((error) => {
     if (!process.env.REACT_APP_DEBUG_API) throw error;
+
     if (error.response) {
       console.log(error.response.data);
       console.log(error.response.status);
@@ -61,7 +61,6 @@ const withLogger = async (promise) =>
     console.log(error.config);
     throw error;
   });
-
 const api = (axios) => {
   return {
     get: (url, config = {}) => withLogger(withAbort(axios.get)(url, config)),
