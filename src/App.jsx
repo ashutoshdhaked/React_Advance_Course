@@ -1,17 +1,10 @@
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import QueryCancellationWithAbortSignal from "./components/query-cancellation";
-
-const queryClient = new QueryClient();
+import { useState } from "react";
+import TasksBoard from "./components/tasks-board";
 
 function App() {
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <ToastContainer />
-        <QueryCancellationWithAbortSignal />
-      </QueryClientProvider>
+      <TasksBoard />
     </>
   );
 }
