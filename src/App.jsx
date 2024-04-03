@@ -1,9 +1,9 @@
-import Ingredients from "./components/ingredients";
+import TrackMouse from "./components/track-mouse";
 
 function App() {
   return (
     <>
-      <Ingredients />
+      <TrackMouse />
     </>
   );
 }
